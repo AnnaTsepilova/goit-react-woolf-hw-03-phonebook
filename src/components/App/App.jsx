@@ -23,6 +23,21 @@ class App extends Component {
     number: '',
   };
 
+  componentDidMount() {
+    const contacts = localStorage.getItem('contacts');
+    const parsedContacts = JSON.parse(contacts);
+
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts });
+    }
+  }
+
+  componentDidUpdate(__, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+
   formSubmitHandler = data => {
     const contact = { id: nanoid(), ...data };
 
@@ -53,7 +68,7 @@ class App extends Component {
     );
   };
 
-  contactDeleteHandler = contactId => {
+  deleteContact = contactId => {
     toast.success('Contact is deleted');
     this.setState(({ contacts }) => ({
       contacts: contacts.filter(contact => contact.id !== contactId),
@@ -72,7 +87,7 @@ class App extends Component {
           {this.state.contacts.length ? (
             <ContactsList
               contacts={this.getContacts()}
-              onDelete={this.contactDeleteHandler}
+              onDelete={this.deleteContact}
             />
           ) : (
             <span className={cssText.text}>
