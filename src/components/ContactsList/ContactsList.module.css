@@ -1,0 +1,17 @@
+.contactsListContainer {
+  list-style-type: disc;
+  padding-bottom: 32px;
+}
+
+.contactsItem {
+  width: 100%;
+  margin-right: 16px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+
+.text {
+  margin-right: 16px;
+  margin-bottom: 16px;
+  font-size: 20px;
+}
