@@ -19,8 +19,6 @@ class App extends Component {
       { id: 'id-4', name: 'Annie Copeland', number: '0932279126' },
     ],
     filter: '',
-    name: '',
-    number: '',
   };
 
   componentDidMount() {
